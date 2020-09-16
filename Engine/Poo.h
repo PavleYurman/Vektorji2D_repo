@@ -2,19 +2,18 @@
 
 #include "Graphics.h"
 #include "Dude.h"
+#include "Vec2D.h"
 
 class Poo
 {
 public:
-	void Init( float in_x,float in_y,float in_vx,float in_vy );
+	void Init(const Vec2D& pos, const Vec2D& vel);
 	void Update( float dt );
 	bool TestCollision( const Dude& dude ) const;
 	void Draw( Graphics& gfx ) const;
 private:
-	float x;
-	float y;
-	float vx;
-	float vy;
+	Vec2D pos_vect;
+	Vec2D vel_vect;
 	static constexpr float width = 24;
 	static constexpr float height = 24;
 	bool initialized = false;

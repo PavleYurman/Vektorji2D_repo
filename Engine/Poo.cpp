@@ -2,68 +2,66 @@
 #include "Graphics.h"
 #include <assert.h>
 
-void Poo::Init( float in_x,float in_y,float in_vx,float in_vy )
+
+void Poo::Init(const Vec2D& pos, const Vec2D& vel)
 {
 	assert( initialized == false );
-	x = in_x;
-	y = in_y;
-	vx = in_vx;
-	vy = in_vy;
+	pos_vect = pos;	
+	vel_vect = vel;
 	initialized = true;
 }
 
 void Poo::Update( float dt )
 {
 	assert( initialized == true );
-	x += vx * dt;
-	y += vy * dt;
+	pos_vect += vel_vect * dt;	
 
-	const float right = x + width;
-	if( x < 0 )
+	const float right = pos_vect.x + width;
+	if(pos_vect.x < 0 )
 	{
-		x = 0;
-		vx = -vx;
+		pos_vect.x = 0;
+		vel_vect.x = -vel_vect.x;
 	}
 	else if( right >= float( Graphics::ScreenWidth ) )
 	{
-		x = float( Graphics::ScreenWidth - 1 ) - width;
-		vx = -vx;
+		pos_vect.x = float( Graphics::ScreenWidth - 1 ) - width;
+		vel_vect.x = -vel_vect.x;
 	}
 
-	const float bottom = y + height;
-	if( y < 0 )
+	const float bottom = pos_vect.y + height;
+	if(pos_vect.y < 0 )
 	{
-		y = 0;
-		vy = -vy;
+		pos_vect.y = 0;
+		vel_vect.y = -vel_vect.y;
 	}
 	else if( bottom >= float( Graphics::ScreenHeight ) )
 	{
-		y = float( Graphics::ScreenHeight - 1 ) - height;
-		vy = -vy;
+		pos_vect.y = float( Graphics::ScreenHeight - 1 ) - height;
+		vel_vect.y = -vel_vect.y;
 	}
 }
 
 bool Poo::TestCollision( const Dude& dude ) const
 {
 	assert( initialized == true );
-	const float duderight = dude.GetX() + dude.GetWidth();
-	const float dudebottom = dude.GetY() + dude.GetHeight();
-	const float pooright = x + width;
-	const float poobottom = y + height;
+	const float duderight = dude.get_pos().x + dude.GetWidth();
+	const float dudebottom = dude.get_pos().y + dude.GetHeight();
+	const float pooright = pos_vect.x + width;
+	const float poobottom = pos_vect.y + height;
 
 	return
-		duderight >= x &&
-		dude.GetX() <= pooright &&
-		dudebottom >= y &&
-		dude.GetY() <= poobottom;
+		duderight >= pos_vect.x &&
+		dude.get_pos().x <= pooright &&
+		dudebottom >= pos_vect.y &&
+		dude.get_pos().y <= poobottom;
 }
 
 void Poo::Draw( Graphics& gfx ) const
 {
 	assert( initialized == true );
 
-	const int x_int = int( x );
-	const int y_int = int( y );
+	const int x_int = int(pos_vect.x );
+	const int y_int = int(pos_vect.y );
 
 	gfx.PutPixel( 14 + x_int,0 + y_int,138,77,0 );
 	gfx.PutPixel( 7 + x_int,1 + y_int,138,77,0 );
