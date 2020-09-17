@@ -352,7 +352,7 @@ void Dude::Draw( Graphics& gfx ) const
 void Dude::Update( const Keyboard & kbd,float dt )
 {
 	if( kbd.KeyIsPressed( VK_RIGHT ) )
-	{
+	{		
 		pos_vec.x += speed * dt;
 	}
 	if( kbd.KeyIsPressed( VK_LEFT ) )

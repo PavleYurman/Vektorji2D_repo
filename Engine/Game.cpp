@@ -33,6 +33,10 @@ Game::Game( MainWindow& wnd )
 	goal( Vec2D( xDist( rng ), yDist( rng ) ) ),
 	meter( 20,20 )
 {
+	Vec2D vect0 = Vec2D(12.0f, 5.0f);
+	Vec2D vect1 = Vec2D(7.0f, 13.0f);
+	float distance = (vect1 - vect0).GetLength();
+
 	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f * 60.0f );
 	for( int i = 0; i < nPoo; ++i )
 	{
@@ -55,8 +59,7 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
-	const float dt = ft.Mark();
-
+	const float dt = ft.Mark();	
 	goal.UpdateColor();
 	if( isStarted && !isGameOver )
 	{
