@@ -353,19 +353,19 @@ void Dude::Update( const Keyboard & kbd,float dt )
 {
 	if( kbd.KeyIsPressed( VK_RIGHT ) )
 	{		
-		pos_vec.x += speed * dt;
+		pos_vec.x += vel_vec.x * dt;
 	}
 	if( kbd.KeyIsPressed( VK_LEFT ) )
 	{
-		pos_vec.x -= speed * dt;
+		pos_vec.x -= vel_vec.x * dt;
 	}
 	if( kbd.KeyIsPressed( VK_DOWN ) )
 	{
-		pos_vec.y += speed * dt;
+		pos_vec.y += vel_vec.y * dt;
 	}
 	if( kbd.KeyIsPressed( VK_UP ) )
 	{
-		pos_vec.y -= speed * dt;
+		pos_vec.y -= vel_vec.y * dt;
 	}
 }
 
