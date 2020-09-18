@@ -51,7 +51,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
-	bool isMousePressed = false;
+	
 	FrameTimer ft;
 	std::random_device rd;
 	std::mt19937 rng;

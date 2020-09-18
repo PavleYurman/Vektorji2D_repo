@@ -59,12 +59,12 @@ void Game::UpdateModel()
 	{
 		//mouse test 2
 		if (wnd.mouse.LeftIsPressed())
-		{
-			isMousePressed = true;
+		{			
 			mousePoint_vect = Vec2D(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
+			
 		}
-
-		dude.Update( wnd,dt, mousePoint_vect );
+		dude.Update(wnd, dt, mousePoint_vect);
+		
 		dude.ClampToScreen();
 
 		for( int i = 0; i < nPoo; ++i )
@@ -28453,8 +28453,7 @@ void Game::ComposeFrame()
 			poos[i].Draw( gfx );
 		}
 		//test mouse 2	
-		dude.Draw( gfx );
-		isMousePressed = false;
+		dude.Draw( gfx );		
 
 		if( isGameOver )
 		{

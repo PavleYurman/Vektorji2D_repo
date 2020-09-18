@@ -366,9 +366,29 @@ void Dude::Update( const MainWindow & wnd,float dt, const Vec2D& mousePos)
 	//if( kbd.KeyIsPressed( VK_UP ) )
 	//{
 	//	pos_vec.y -= vel_vec.y * dt;
-	//}
+	//}		
+
 	
-	pos_vec = mousePos;
+	if (pos_vec.x != mousePos.x && pos_vec.y != mousePos.y)
+	{
+		if (pos_vec.x > mousePos.x)
+		{
+			pos_vec.x -= vel_vec.x * dt;
+		}
+		if (pos_vec.y > mousePos.y)
+		{
+			pos_vec.y -= vel_vec.y * dt;
+		}
+		if (pos_vec.x < mousePos.x)
+		{
+			pos_vec.x += vel_vec.x * dt;
+		}
+		if (pos_vec.y < mousePos.y)
+		{
+			pos_vec.y += vel_vec.y * dt;
+		}
+	}
+	
 }
 
 Vec2D Dude::get_pos() const
