@@ -349,7 +349,7 @@ void Dude::Draw( Graphics& gfx ) const
 	gfx.PutPixel( 12 + x_int,19 + y_int,0,0,0 );
 }
 
-void Dude::Update( const MainWindow & wnd,float dt )
+void Dude::Update( const MainWindow & wnd,float dt, const Vec2D& mousePos)
 {
 	//if( kbd.KeyIsPressed( VK_RIGHT ) )
 	//{		
@@ -367,12 +367,8 @@ void Dude::Update( const MainWindow & wnd,float dt )
 	//{
 	//	pos_vec.y -= vel_vec.y * dt;
 	//}
-	if (wnd.mouse.LeftIsPressed())
-	{
-		const Vec2D pointerPos(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
-		
-	}
-
+	
+	pos_vec = mousePos;
 }
 
 Vec2D Dude::get_pos() const

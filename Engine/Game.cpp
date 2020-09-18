@@ -30,8 +30,7 @@ Game::Game( MainWindow& wnd )
 	rng( rd() ),
 	xDist( 0,770 ),
 	yDist( 0,570 ),
-	goal( Vec2D( xDist( rng ), yDist( rng ) ) ),
-	goal2( Vec2D( xDist( rng ), yDist( rng ) ) ),
+	goal( Vec2D( xDist( rng ), yDist( rng ) ) ),	
 	meter( 20,20 )
 {
 	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f * 60.0f );
@@ -58,13 +57,14 @@ void Game::UpdateModel()
 
 	if( isStarted && !isGameOver )
 	{
-		//mouse test
+		//mouse test 2
 		if (wnd.mouse.LeftIsPressed())
 		{
 			isMousePressed = true;
-			goal2.Respawn( Vec2D( float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()) ));
+			mousePoint_vect = Vec2D(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
 		}
-		dude.Update( wnd,dt );
+
+		dude.Update( wnd,dt, mousePoint_vect );
 		dude.ClampToScreen();
 
 		for( int i = 0; i < nPoo; ++i )
@@ -28446,16 +28446,16 @@ void Game::ComposeFrame()
 		DrawTitleScreen( 325,211 );
 	}
 	else
-	{
-		//test mouse
-		goal2.Draw(gfx);
-		isMousePressed = false;
+	{		
 		goal.Draw( gfx );
 		for( int i = 0; i < nPoo; ++i )
 		{
 			poos[i].Draw( gfx );
 		}
+		//test mouse 2	
 		dude.Draw( gfx );
+		isMousePressed = false;
+
 		if( isGameOver )
 		{
 			DrawGameOver( 358,268 );

@@ -59,8 +59,9 @@ private:
 	std::uniform_real_distribution<float> yDist;
 	Dude dude;
 	Goal goal;
-	// mouse test
-	Goal goal2;
+	// mouse test 2
+	Vec2D mousePoint_vect;
+
 	Meter meter;
 	static constexpr int nPoo = 10;
 	Poo poos[nPoo];

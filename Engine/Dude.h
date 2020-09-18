@@ -10,7 +10,7 @@ class Dude
 public:	
 	void ClampToScreen();
 	void Draw( Graphics& gfx ) const;
-	void Update( const MainWindow& wnd,float dt );
+	void Update( const MainWindow& wnd,float dt, const Vec2D& mousePos );
 	Vec2D get_pos() const;	
 	float GetWidth() const;
 	float GetHeight() const;
