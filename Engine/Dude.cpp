@@ -1,6 +1,6 @@
 #include "Dude.h"
 #include "Graphics.h"
-
+#include "MainWindow.h"
 
 
 void Dude::ClampToScreen()
@@ -349,24 +349,30 @@ void Dude::Draw( Graphics& gfx ) const
 	gfx.PutPixel( 12 + x_int,19 + y_int,0,0,0 );
 }
 
-void Dude::Update( const Keyboard & kbd,float dt )
+void Dude::Update( const MainWindow & wnd,float dt )
 {
-	if( kbd.KeyIsPressed( VK_RIGHT ) )
-	{		
-		pos_vec.x += vel_vec.x * dt;
-	}
-	if( kbd.KeyIsPressed( VK_LEFT ) )
+	//if( kbd.KeyIsPressed( VK_RIGHT ) )
+	//{		
+	//	pos_vec.x += vel_vec.x * dt;
+	//}
+	//if( kbd.KeyIsPressed( VK_LEFT ) )
+	//{
+	//	pos_vec.x -= vel_vec.x * dt;
+	//}
+	//if( kbd.KeyIsPressed( VK_DOWN ) )
+	//{
+	//	pos_vec.y += vel_vec.y * dt;
+	//}
+	//if( kbd.KeyIsPressed( VK_UP ) )
+	//{
+	//	pos_vec.y -= vel_vec.y * dt;
+	//}
+	if (wnd.mouse.LeftIsPressed())
 	{
-		pos_vec.x -= vel_vec.x * dt;
+		const Vec2D pointerPos(float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()));
+		
 	}
-	if( kbd.KeyIsPressed( VK_DOWN ) )
-	{
-		pos_vec.y += vel_vec.y * dt;
-	}
-	if( kbd.KeyIsPressed( VK_UP ) )
-	{
-		pos_vec.y -= vel_vec.y * dt;
-	}
+
 }
 
 Vec2D Dude::get_pos() const

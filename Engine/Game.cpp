@@ -31,19 +31,12 @@ Game::Game( MainWindow& wnd )
 	xDist( 0,770 ),
 	yDist( 0,570 ),
 	goal( Vec2D( xDist( rng ), yDist( rng ) ) ),
+	goal2( Vec2D( xDist( rng ), yDist( rng ) ) ),
 	meter( 20,20 )
 {
-	Vec2D vect0 = Vec2D(12.0f, 5.0f);
-	Vec2D vect1 = Vec2D(7.0f, 13.0f);
-	float distance = (vect1 - vect0).GetLength();
-
 	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f * 60.0f );
 	for( int i = 0; i < nPoo; ++i )
-	{
-		/*Vec2D pos(xDist(rng), yDist(rng));
-		Vec2D vel(vDist(rng), vDist(rng));
-		poos[i].Init( pos, vel );*/
-		// ali tudi:
+	{		
 		poos[i].Init( Vec2D( xDist(rng), yDist(rng) ), Vec2D( vDist(rng), vDist(rng) ) );
 	}
 	title.Play();
@@ -61,9 +54,17 @@ void Game::UpdateModel()
 {
 	const float dt = ft.Mark();	
 	goal.UpdateColor();
+
+
 	if( isStarted && !isGameOver )
 	{
-		dude.Update( wnd.kbd,dt );
+		//mouse test
+		if (wnd.mouse.LeftIsPressed())
+		{
+			isMousePressed = true;
+			goal2.Respawn( Vec2D( float(wnd.mouse.GetPosX()), float(wnd.mouse.GetPosY()) ));
+		}
+		dude.Update( wnd,dt );
 		dude.ClampToScreen();
 
 		for( int i = 0; i < nPoo; ++i )
@@ -28446,6 +28447,9 @@ void Game::ComposeFrame()
 	}
 	else
 	{
+		//test mouse
+		goal2.Draw(gfx);
+		isMousePressed = false;
 		goal.Draw( gfx );
 		for( int i = 0; i < nPoo; ++i )
 		{

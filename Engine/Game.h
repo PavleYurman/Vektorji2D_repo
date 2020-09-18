@@ -51,6 +51,7 @@ private:
 	Graphics gfx;
 	/********************************/
 	/*  User Variables              */
+	bool isMousePressed = false;
 	FrameTimer ft;
 	std::random_device rd;
 	std::mt19937 rng;
@@ -58,6 +59,8 @@ private:
 	std::uniform_real_distribution<float> yDist;
 	Dude dude;
 	Goal goal;
+	// mouse test
+	Goal goal2;
 	Meter meter;
 	static constexpr int nPoo = 10;
 	Poo poos[nPoo];
