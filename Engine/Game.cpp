@@ -37,7 +37,7 @@ Game::Game( MainWindow& wnd )
 	Vec2D vect1 = Vec2D(7.0f, 13.0f);
 	float distance = (vect1 - vect0).GetLength();
 
-	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f * 60.0f );
+	std::uniform_real_distribution<float> vDist( -2.5f * 60.0f,2.5f *  60.0f );
 	for( int i = 0; i < nPoo; ++i )
 	{
 		/*Vec2D pos(xDist(rng), yDist(rng));

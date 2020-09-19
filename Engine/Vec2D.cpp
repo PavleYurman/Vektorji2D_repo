@@ -70,7 +70,7 @@ Vec2D Vec2D::GetNormalize() const
 	const float length = GetLength();
 	if(length != 0.0f)
 	{
-		return *this * length;		
+		return *this * (1.0f / length);		
 	}
 	//return Vec2D(0.0f, 0.0f); ali
 	return *this;
