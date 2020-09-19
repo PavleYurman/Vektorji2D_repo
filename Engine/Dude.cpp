@@ -371,6 +371,13 @@ void Dude::Update( const Keyboard & kbd,float dt )
 	pos_vec += vel.GetNormalize() * speed * dt; // continue vid 2:07
 }
 
+void Dude::Update(const Mouse& mouse, float dt)
+{
+	const Vec2D center = pos_vec + Vec2D( width / 2.0f, height / 2.0f );
+	Vec2D toPointer = Vec2D(float(mouse.GetPosX()), float(mouse.GetPosY())) - center;
+	pos_vec += toPointer.Normalize() * speed * dt;
+}
+
 Vec2D Dude::get_pos() const
 {
 	return pos_vec;
